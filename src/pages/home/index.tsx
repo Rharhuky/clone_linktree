@@ -1,3 +1,7 @@
+import { SocialMedia } from "../../components/social";
+
+import { FaInstagram, FaLinkedin } from "react-icons/fa";
+
 export default function Home() {
   return (
     <div className="flex flex-col w-full py-4 items-center justify-center">
@@ -11,8 +15,14 @@ export default function Home() {
             <p className="text-base md:text-lg">Instagram</p>
           </a>
         </section>
-
-        <footer className="flex justify-center gap-3 my-4"></footer>
+        <footer className="flex justify-center gap-3 my-4 ">
+          <SocialMedia url="https://www.instagram.com/rharhuky/">
+            <FaInstagram size={35} color="#FFF" />
+          </SocialMedia>
+          <SocialMedia url="https://www.linkedin.com/in/rharhuandrew-souza/">
+            <FaLinkedin size={35} color="#FFF" />
+          </SocialMedia>
+        </footer>
       </main>
     </div>
   );
