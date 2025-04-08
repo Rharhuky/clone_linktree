@@ -1,6 +1,10 @@
 import { Link } from "react-router";
+import Input from "../../components/input";
+import { useState } from "react";
 
 export default function Login() {
+  const [email, setEmail] = useState<string>();
+  const [password, setPassword] = useState();
   return (
     <div className="flex flex-col justify-center items-center h-screen w-full">
       <Link to={"/"}>
@@ -11,6 +15,25 @@ export default function Login() {
           </span>
         </h1>
       </Link>
+
+      <form className="w-full max-w-xl flex flex-col px-2" action="">
+        <Input
+          placeholder="Type your email"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+
+        <Input
+          placeholder="Type your password"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button className="h-9 bg-blue-600 rounded-md text-lg font-medium text-white cursor-pointer">
+          Entrar
+        </button>
+      </form>
     </div>
   );
 }
