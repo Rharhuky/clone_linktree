@@ -1,10 +1,19 @@
 import { Link } from "react-router";
 import Input from "../../components/input";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 
 export default function Login() {
   const [email, setEmail] = useState<string>();
   const [password, setPassword] = useState();
+
+  function handleSubmit(event: FormEvent): void {
+    event.preventDefault();
+    console.log({
+      email: email,
+      password: password,
+    });
+  }
+
   return (
     <div className="flex flex-col justify-center items-center h-screen w-full">
       <Link to={"/"}>
@@ -16,7 +25,11 @@ export default function Login() {
         </h1>
       </Link>
 
-      <form className="w-full max-w-xl flex flex-col px-2" action="">
+      <form
+        onSubmit={handleSubmit}
+        className="w-full max-w-xl flex flex-col px-2"
+        action=""
+      >
         <Input
           placeholder="Type your email"
           type="email"
