@@ -1,17 +1,30 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import Input from "../../components/input";
 import { FormEvent, useState } from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../services/firebaseConnect";
 
 export default function Login() {
   const [email, setEmail] = useState<string>();
-  const [password, setPassword] = useState();
-
+  const [password, setPassword] = useState<string>();
+  const navigate = useNavigate();
   function handleSubmit(event: FormEvent): void {
     event.preventDefault();
-    console.log({
-      email: email,
-      password: password,
-    });
+
+    if (email === "" || password === "") {
+      alert("Dados inválidos!");
+      return;
+    }
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        console.log("SUCESSO NO LOGING!");
+        navigate("/admin", { replace: true });
+      })
+      .catch((error) => {
+        console.log("ERRO NO LOGING");
+        console.log(error);
+      });
   }
 
   return (
